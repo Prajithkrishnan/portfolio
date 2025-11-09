@@ -276,16 +276,12 @@
 
         .profile-img img {
             width: 200px;
-            /* Adjust as needed */
             height: 200px;
             border-radius: 50%;
-            /* Makes it circular */
             object-fit: cover;
-            /* Crops nicely */
             border: 3px solid #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
 
         .hero-text p {
             font-size: 1.2rem;
@@ -684,6 +680,126 @@
             color: var(--secondary);
         }
 
+        /* My Works Section - Carousel Version */
+        .works-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 0 40px;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+        }
+
+        .works-card {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .works-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .works-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .works-img {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .works-img img,
+        .works-img video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .works-info {
+            padding: 1.5rem;
+        }
+
+        .works-info h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .works-info p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--gray-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .carousel-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .carousel-btn:disabled {
+            background-color: var(--gray-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* Contact Section */
         .contact {
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(126, 34, 206, 0.05) 100%);
@@ -859,13 +975,8 @@
                 text-align: center;
             }
 
-            /* .hero-text {
-                margin-bottom: 3rem;
-            } */
-
             .profile-card {
-                        margin-top: 9px;
-
+                margin-top: 9px;
                 transform: perspective(1000px) rotateY(0deg);
             }
 
@@ -875,6 +986,10 @@
 
             .contact-content {
                 flex-direction: column;
+            }
+            
+            .works-card {
+                flex: 0 0 calc(50% - 1rem);
             }
         }
 
@@ -916,6 +1031,14 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+            
+            .works-card {
+                flex: 0 0 100%;
+            }
+            
+            .works-carousel {
+                padding: 0 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -951,6 +1074,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#works">Works</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="hamburger">
@@ -980,11 +1104,10 @@
                         </div>
                         <div class="profile-info">
                             <h3>Prajith Krishnan</h3>
-                            <p>Software Developer</p>
+                            <p>Software Developer / Graphic Design / Video Editor</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -1083,7 +1206,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Software Developer / Graphic Designer</h3>
+                        <h3>Software Developer / Graphic Designer /Video Editor</h3>
                         <p class="date"><i class="far fa-calendar-alt"></i> Jan 2025 - Present</p>
                         <p><strong>Freelancer</strong></p>
                         <ul>
@@ -1182,6 +1305,96 @@
         </div>
     </section>
 
+    <!-- My Works Section - Carousel Version -->
+    <section class="projects" id="works">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Works</h2>
+            </div>
+            <div class="works-carousel">
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="works-card">
+                        <div class="works-img">
+                            <video width="100%" controls>
+                                <source src="images/latest work.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="works-info">
+                            <h3>Latest Work</h3>
+                            <p>Checkout my recent video editing design skills.</p>
+                        </div>
+                    </div>
+
+                    <div class="works-card">
+                        <div class="works-img">
+                            <a href="images/DIGITAL BUZZ ASSIGNMENT.pdf" target="_blank">
+                                <img src="images/DIGITAL BUZZ ASSIGNMENT_page-0001.jpg" alt="Digital Buzz Assignment">
+                            </a>
+                        </div>
+                        <div class="works-info">
+                            <h3>Digital Buzz Assignment</h3>
+                            <p>Graphic design project showcasing creative layout and visual communication skills.</p>
+                        </div>
+                    </div>
+
+                    <div class="works-card">
+                        <div class="works-img">
+                            <video width="100%" controls>
+                                <source src="images/Recording 2025-08-21 155930.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="works-info">
+                            <h3>Latest Work</h3>
+                            <p>Checkout my recent graphic design work in website</p>
+                        </div>
+                    </div>
+
+                    <div class="works-card">
+                        <div class="works-img">
+                            <video width="100%" controls>
+                                <source src="images/jobin 2nd video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="works-info">
+                            <h3>Latest Work</h3>
+                            <p>Checkout video editing for my client</p>
+                        </div>
+                    </div>
+
+                     <div class="works-card">
+                        <div class="works-img">
+                            <video width="100%" controls>
+                                <source src="images/coconest.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="works-info">
+                            <h3>Latest Work</h3>
+                            <p>Checkout video editing for my client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="carousel-dots" id="carouselDots">
+                        <!-- Dots will be generated by JavaScript -->
+                    </div>
+                    
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
@@ -1218,34 +1431,15 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="www.linkedin.com/in/prajith-krishnan-9a1a52183" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Prajithkrishnan" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="www.linkedin.com/in/prajith-krishnan-9a1a52183" class="social-link"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Prajithkrishnan" class="social-link"><i
+                                class="fab fa-github"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/prajith_kichuu/" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/prajith_kichuu/" class="social-link"><i
+                                class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <!-- <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" placeholder="Enter your message"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div> -->
             </div>
         </div>
     </section>
@@ -1260,6 +1454,7 @@
                     <a href="#about">About</a>
                     <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
+                    <a href="#works">Works</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <p class="copyright">© 2025 Prajith Krishnan All Rights Reserved.</p>
@@ -1280,7 +1475,7 @@
 
         // Animation on scroll
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.stat, .skill, .timeline-item, .project-card, .contact-item, .form-group');
+            const elements = document.querySelectorAll('.stat, .skill, .timeline-item, .project-card, .works-card, .contact-item, .form-group');
 
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -1298,13 +1493,6 @@
         // Check on scroll
         window.addEventListener('scroll', animateOnScroll);
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1320,6 +1508,94 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselContainer = document.getElementById('carouselContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const carouselDots = document.getElementById('carouselDots');
+            
+            const worksCards = document.querySelectorAll('.works-card');
+            const totalSlides = worksCards.length;
+            let currentSlide = 0;
+            let slidesPerView = 3;
+            
+            // Update slides per view based on screen size
+            function updateSlidesPerView() {
+                if (window.innerWidth <= 768) {
+                    slidesPerView = 1;
+                } else if (window.innerWidth <= 992) {
+                    slidesPerView = 2;
+                } else {
+                    slidesPerView = 3;
+                }
+                updateCarousel();
+            }
+            
+            // Create dots for carousel navigation
+            function createDots() {
+                carouselDots.innerHTML = '';
+                const totalDots = Math.ceil(totalSlides / slidesPerView);
+                
+                for (let i = 0; i < totalDots; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (i === 0) dot.classList.add('active');
+                    
+                    dot.addEventListener('click', () => {
+                        currentSlide = i * slidesPerView;
+                        updateCarousel();
+                    });
+                    
+                    carouselDots.appendChild(dot);
+                }
+            }
+            
+            // Update carousel position and active dot
+            function updateCarousel() {
+                const cardWidth = worksCards[0].offsetWidth + 32; // width + gap
+                const translateX = -currentSlide * cardWidth;
+                carouselContainer.style.transform = `translateX(${translateX}px)`;
+                
+                // Update active dot
+                const dots = document.querySelectorAll('.carousel-dot');
+                const activeDotIndex = Math.floor(currentSlide / slidesPerView);
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeDotIndex);
+                });
+                
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide >= totalSlides - slidesPerView;
+            }
+            
+            // Event listeners for navigation buttons
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide -= slidesPerView;
+                    updateCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < totalSlides - slidesPerView) {
+                    currentSlide += slidesPerView;
+                    updateCarousel();
+                }
+            });
+            
+            // Initialize carousel
+            updateSlidesPerView();
+            createDots();
+            
+            // Update on window resize
+            window.addEventListener('resize', () => {
+                updateSlidesPerView();
+                createDots();
             });
         });
     </script>
