@@ -9,6 +9,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap"
         rel="stylesheet">
+    <!-- Add Content Security Policy to fix the Chrome DevTools error -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com 'unsafe-inline' 'unsafe-eval'; connect-src 'self' http://127.0.0.1:5501;">
     <style>
         :root {
             --primary: #2563eb;
@@ -704,6 +706,7 @@
             transition: var(--transition);
             opacity: 0;
             transform: translateY(30px);
+            cursor: pointer;
         }
 
         .works-card.animated {
@@ -968,6 +971,153 @@
             font-size: 0.9rem;
         }
 
+        /* Modal Dialog Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-dialog {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-dialog {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--error);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-media {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .modal-media img,
+        .modal-media video {
+            width: 100%;
+            display: block;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .modal-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .modal-tag {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* PDF Preview Styles */
+        .pdf-preview {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pdf-preview i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .pdf-preview h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .pdf-preview p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Image Preview Styles */
+        .image-preview {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero-content {
@@ -1059,6 +1209,10 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .modal-dialog {
+                width: 95%;
+            }
         }
     </style>
 </head>
@@ -1100,7 +1254,7 @@
                 <div class="hero-image">
                     <div class="profile-card">
                         <div class="profile-img">
-                            <img src="images\optimized_passport_photo.jpg" alt="Prajith Krishnan">
+                            <img src="images/optimized_passport_photo.jpg" alt="Prajith Krishnan">
                         </div>
                         <div class="profile-info">
                             <h3>Prajith Krishnan</h3>
@@ -1313,7 +1467,8 @@
             </div>
             <div class="works-carousel">
                 <div class="carousel-container" id="carouselContainer">
-                    <div class="works-card">
+                    <!-- Work 1 - Video -->
+                    <div class="works-card" data-work="1">
                         <div class="works-img">
                             <video width="100%" controls>
                                 <source src="images/latest work.mp4" type="video/mp4">
@@ -1326,11 +1481,10 @@
                         </div>
                     </div>
 
-                    <div class="works-card">
+                    <!-- Work 2 - Image/PDF -->
+                    <div class="works-card" data-work="2">
                         <div class="works-img">
-                            <a href="images/DIGITAL BUZZ ASSIGNMENT.pdf" target="_blank">
-                                <img src="images/DIGITAL BUZZ ASSIGNMENT_page-0001.jpg" alt="Digital Buzz Assignment">
-                            </a>
+                            <img src="images/DIGITAL BUZZ ASSIGNMENT_page-0001.jpg" alt="Digital Buzz Assignment">
                         </div>
                         <div class="works-info">
                             <h3>Digital Buzz Assignment</h3>
@@ -1338,10 +1492,11 @@
                         </div>
                     </div>
 
-                    <div class="works-card">
+                    <!-- Work 3 - Video -->
+                    <div class="works-card" data-work="3">
                         <div class="works-img">
                             <video width="100%" controls>
-                                <source src="images/Recording 2025-08-21 155930 (1) (1).3gp" type="video/mp4">
+                                <source src="images/Recording 2025-08-21 155930.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -1351,7 +1506,8 @@
                         </div>
                     </div>
 
-                    <div class="works-card">
+                    <!-- Work 4 - Video -->
+                    <div class="works-card" data-work="4">
                         <div class="works-img">
                             <video width="100%" controls>
                                 <source src="images/jobin 2nd video.mp4" type="video/mp4">
@@ -1364,7 +1520,8 @@
                         </div>
                     </div>
 
-                     <div class="works-card">
+                    <!-- Work 5 - Video -->
+                    <div class="works-card" data-work="5">
                         <div class="works-img">
                             <video width="100%" controls>
                                 <source src="images/coconest.mp4" type="video/mp4">
@@ -1461,6 +1618,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal Dialog -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalTitle">Work Title</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
 
     <script>
         // Header scroll effect
@@ -1598,8 +1768,98 @@
                 createDots();
             });
         });
+
+        // Modal Dialog Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalClose = document.getElementById('modalClose');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const worksCards = document.querySelectorAll('.works-card');
+            
+            // Work data for modal dialogs
+            const worksData = {
+                1: {
+                    title: "Latest Work - Video Editing",
+                    media: '<video width="100%" controls><source src="images/latest work.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+                    description: "This video showcases my recent video editing skills, demonstrating proficiency in cutting-edge video editing software and techniques. I've focused on creating engaging content with smooth transitions, appropriate pacing, and professional-grade visual effects.",
+                    tags: ["Video Editing", "Motion Graphics", "Adobe Premiere", "After Effects"]
+                },
+                2: {
+                    title: "Digital Buzz Assignment",
+                    media: '<img src="images/DIGITAL BUZZ ASSIGNMENT_page-0001.jpg" alt="Digital Buzz Assignment" style="width:100%">',
+                    description: "This graphic design project demonstrates my ability to create visually compelling layouts with strong visual communication. The assignment showcases my understanding of design principles, typography, color theory, and composition to deliver effective visual solutions.",
+                    tags: ["Graphic Design", "Layout Design", "Adobe Photoshop", "Visual Communication"]
+                },
+                3: {
+                    title: "Latest Work - Website Design",
+                    media: '<video width="100%" controls><source src="images/Recording 2025-08-21 155930.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+                    description: "This video demonstrates my recent graphic design work applied to website interfaces. I've focused on creating intuitive user experiences with visually appealing designs that align with modern web standards and user expectations.",
+                    tags: ["UI/UX Design", "Web Design", "Graphic Design", "User Experience"]
+                },
+                4: {
+                    title: "Client Work - Video Editing",
+                    media: '<video width="100%" controls><source src="images/jobin 2nd video.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+                    description: "This project showcases my video editing capabilities for client work. I've focused on delivering professional-quality videos that meet client specifications while maintaining creative integrity and technical excellence.",
+                    tags: ["Video Editing", "Client Work", "Professional Grade", "Creative Direction"]
+                },
+                5: {
+                    title: "Client Work - Coconest Project",
+                    media: '<video width="100%" controls><source src="images/coconest.mp4" type="video/mp4">Your browser does not support the video tag.</video>',
+                    description: "This video editing project for the Coconest client demonstrates my ability to work with diverse content and deliver compelling visual narratives. The project required careful attention to pacing, storytelling, and brand alignment.",
+                    tags: ["Video Production", "Brand Alignment", "Storytelling", "Client Collaboration"]
+                }
+            };
+            
+            // Open modal when a work card is clicked
+            worksCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const workId = this.getAttribute('data-work');
+                    const workData = worksData[workId];
+                    
+                    if (workData) {
+                        modalTitle.textContent = workData.title;
+                        modalBody.innerHTML = `
+                            <div class="modal-media">
+                                ${workData.media}
+                            </div>
+                            <div class="modal-description">
+                                <p>${workData.description}</p>
+                            </div>
+                            <div class="modal-tags">
+                                ${workData.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
+                            </div>
+                        `;
+                        
+                        modalOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    }
+                });
+            });
+            
+            // Close modal when close button is clicked
+            modalClose.addEventListener('click', function() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modal when clicking outside the dialog
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    modalOverlay.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+        });
     </script>
 </body>
 
 </html>
-
