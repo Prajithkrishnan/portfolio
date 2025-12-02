@@ -10,7 +10,8 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap"
         rel="stylesheet">
     <!-- Add Content Security Policy to fix the Chrome DevTools error -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com 'unsafe-inline' 'unsafe-eval'; connect-src 'self' http://127.0.0.1:5501;">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com 'unsafe-inline' 'unsafe-eval'; connect-src 'self' http://127.0.0.1:5501;">
     <style>
         :root {
             --primary: #2563eb;
@@ -74,6 +75,14 @@
             margin-bottom: 3rem;
             position: relative;
         }
+
+        .project-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
 
         .section-title h2 {
             font-size: 2.5rem;
@@ -1137,7 +1146,7 @@
             .contact-content {
                 flex-direction: column;
             }
-            
+
             .works-card {
                 flex: 0 0 calc(50% - 1rem);
             }
@@ -1212,11 +1221,11 @@
             .section-title h2 {
                 font-size: 2rem;
             }
-            
+
             .works-card {
                 flex: 0 0 100%;
             }
-            
+
             .works-carousel {
                 padding: 0 20px;
             }
@@ -1240,7 +1249,7 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .modal-dialog {
                 width: 95%;
             }
@@ -1415,26 +1424,28 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
-                        <i class="fas fa-shopping-cart"></i>
+                        <img src="images/truecart.png">
                     </div>
                     <div class="project-info">
                         <h3>TRUECART</h3>
                         <p>E-commerce platform with comprehensive frontend and backend integration.</p>
                         <div class="project-tags">
+                            <span class="project-tag">Angular</span>
                             <span class="project-tag">HTML/CSS</span>
-                            <span class="project-tag">TypeScript</span>
+                            <span class="project-tag">MYSQL</span>
                             <span class="project-tag">Bootstrap</span>
-                            <span class="project-tag">Spring Boot</span>
+                            <span class="project-tag">JAVASpring Boot</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                            <a href="https://app.trueitindia.in/login" class="project-link"><i
+                                    class="fas fa-external-link-alt"></i> Live Demo</a>
+
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <i class="fas fa-hotel"></i>
+                       <img src="images/stayverse.png" >
                     </div>
                     <div class="project-info">
                         <h3>STAYVERSE</h3>
@@ -1442,17 +1453,18 @@
                         <div class="project-tags">
                             <span class="project-tag">PHP</span>
                             <span class="project-tag">Laravel</span>
+                            <span class="project-tag">HTML/CSS</span>
+                            <span class="project-tag">BOOSTRAP 5</span>
                             <span class="project-tag">MySQL</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                            <a href="https://www.stayverse.in/" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <i class="fas fa-umbrella-beach"></i>
+                     <img src="images/pazhamuthirsolay.png" >
                     </div>
                     <div class="project-info">
                         <h3>HOSTINGER</h3>
@@ -1463,14 +1475,13 @@
                             <span class="project-tag">Responsive</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                            <a href="https://pazhamuthirsolairesorts.in/" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <i class="fas fa-gamepad"></i>
+                        <img src="images/toytohome.png" alt="">
                     </div>
                     <div class="project-info">
                         <h3>TOYTOHOME</h3>
@@ -1481,8 +1492,7 @@
                             <span class="project-tag">Bootstrap</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+    
                         </div>
                     </div>
                 </div>
@@ -1565,16 +1575,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="carousel-nav">
                     <button class="carousel-btn" id="prevBtn">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    
+
                     <div class="carousel-dots" id="carouselDots">
                         <!-- Dots will be generated by JavaScript -->
                     </div>
-                    
+
                     <button class="carousel-btn" id="nextBtn">
                         <i class="fas fa-chevron-right"></i>
                     </button>
@@ -1747,17 +1757,17 @@
         });
 
         // Carousel functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const carouselContainer = document.getElementById('carouselContainer');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const carouselDots = document.getElementById('carouselDots');
-            
+
             const worksCards = document.querySelectorAll('.works-card');
             const totalSlides = worksCards.length;
             let currentSlide = 0;
             let slidesPerView = 3;
-            
+
             // Update slides per view based on screen size
             function updateSlidesPerView() {
                 if (window.innerWidth <= 768) {
@@ -1769,45 +1779,45 @@
                 }
                 updateCarousel();
             }
-            
+
             // Create dots for carousel navigation
             function createDots() {
                 carouselDots.innerHTML = '';
                 const totalDots = Math.ceil(totalSlides / slidesPerView);
-                
+
                 for (let i = 0; i < totalDots; i++) {
                     const dot = document.createElement('div');
                     dot.classList.add('carousel-dot');
                     if (i === 0) dot.classList.add('active');
-                    
+
                     dot.addEventListener('click', () => {
                         currentSlide = i * slidesPerView;
                         updateCarousel();
                     });
-                    
+
                     carouselDots.appendChild(dot);
                 }
             }
-            
+
             // Update carousel position and active dot
             function updateCarousel() {
                 const cardWidth = worksCards[0].offsetWidth + 32; // width + gap
                 const translateX = -currentSlide * cardWidth;
                 carouselContainer.style.transform = `translateX(${translateX}px)`;
-                
+
                 // Update active dot
                 const dots = document.querySelectorAll('.carousel-dot');
                 const activeDotIndex = Math.floor(currentSlide / slidesPerView);
-                
+
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === activeDotIndex);
                 });
-                
+
                 // Update button states
                 prevBtn.disabled = currentSlide === 0;
                 nextBtn.disabled = currentSlide >= totalSlides - slidesPerView;
             }
-            
+
             // Event listeners for navigation buttons
             prevBtn.addEventListener('click', () => {
                 if (currentSlide > 0) {
@@ -1815,18 +1825,18 @@
                     updateCarousel();
                 }
             });
-            
+
             nextBtn.addEventListener('click', () => {
                 if (currentSlide < totalSlides - slidesPerView) {
                     currentSlide += slidesPerView;
                     updateCarousel();
                 }
             });
-            
+
             // Initialize carousel
             updateSlidesPerView();
             createDots();
-            
+
             // Update on window resize
             window.addEventListener('resize', () => {
                 updateSlidesPerView();
@@ -1835,13 +1845,13 @@
         });
 
         // Modal Dialog Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const modalOverlay = document.getElementById('modalOverlay');
             const modalClose = document.getElementById('modalClose');
             const modalTitle = document.getElementById('modalTitle');
             const modalBody = document.getElementById('modalBody');
             const worksCards = document.querySelectorAll('.works-card');
-            
+
             // Work data for modal dialogs
             const worksData = {
                 1: {
@@ -1875,13 +1885,13 @@
                     tags: ["Video Production", "Brand Alignment", "Storytelling", "Client Collaboration"]
                 }
             };
-            
+
             // Open modal when a work card is clicked
             worksCards.forEach(card => {
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     const workId = this.getAttribute('data-work');
                     const workData = worksData[workId];
-                    
+
                     if (workData) {
                         modalTitle.textContent = workData.title;
                         modalBody.innerHTML = `
@@ -1895,29 +1905,29 @@
                                 ${workData.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
                             </div>
                         `;
-                        
+
                         modalOverlay.classList.add('active');
                         document.body.style.overflow = 'hidden'; // Prevent scrolling
                     }
                 });
             });
-            
+
             // Close modal when close button is clicked
-            modalClose.addEventListener('click', function() {
+            modalClose.addEventListener('click', function () {
                 modalOverlay.classList.remove('active');
                 document.body.style.overflow = ''; // Restore scrolling
             });
-            
+
             // Close modal when clicking outside the dialog
-            modalOverlay.addEventListener('click', function(e) {
+            modalOverlay.addEventListener('click', function (e) {
                 if (e.target === modalOverlay) {
                     modalOverlay.classList.remove('active');
                     document.body.style.overflow = ''; // Restore scrolling
                 }
             });
-            
+
             // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
                     modalOverlay.classList.remove('active');
                     document.body.style.overflow = ''; // Restore scrolling
